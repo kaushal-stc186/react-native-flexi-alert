@@ -1,6 +1,6 @@
 {
   "name": "react-native-flexi-alert",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "main": "index.ts",
   "types": "index.ts",
   "description": "Flexible alert system for React Native apps",
