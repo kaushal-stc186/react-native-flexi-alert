@@ -23,6 +23,14 @@ jobs:
         registry-url: https://registry.npmjs.org
 
     # --------------------------------------------------------
+    # SET GIT IDENTITY FOR COMMITS
+    # --------------------------------------------------------
+    - name: Set Git identity
+      run: |
+        git config user.name "kaushal-stc186"
+        git config user.email "kaushal.kumar@seventhtriangle.com"
+
+    # --------------------------------------------------------
     # VERSION BUMP USING STANDARD-VERSION
     # --------------------------------------------------------
     - name: Bump Version (Conventional Commits)
@@ -35,10 +43,7 @@ jobs:
 
     - name: Push version bump commit + tags
       if: github.ref == 'refs/heads/main'
-      run: |
-        git config user.name "github-actions"
-        git config user.email "github-actions@github.com"
-        git push --follow-tags origin main
+      run: git push --follow-tags origin main
 
     # --------------------------------------------------------
     # PUBLISH TO NPM
