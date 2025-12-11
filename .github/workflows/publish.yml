@@ -17,7 +17,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
       with:
-        token: ${{ secrets.PAT_TOKEN }}  
+        token: ${{ secrets.PAT_TOKEN }}
         persist-credentials: true
 
     - name: Setup Node
@@ -26,32 +26,23 @@ jobs:
         node-version: 20
         registry-url: https://registry.npmjs.org
 
-    # --------------------------------------------------------
-    # SET GIT IDENTITY FOR COMMITS
-    # --------------------------------------------------------
     - name: Set Git identity
       run: |
         git config user.name "kaushal-stc186"
         git config user.email "kaushal.kumar@seventhtriangle.com"
 
-    # --------------------------------------------------------
-    # VERSION BUMP USING STANDARD-VERSION
-    # --------------------------------------------------------
     - name: Bump Version (Conventional Commits)
       if: github.ref == 'refs/heads/main'
       run: |
         npm install -g standard-version
-        standard-version
+        standard-version --release-as patch --message "chore(release): %s [skip ci]"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Push version bump commit + tags
       if: github.ref == 'refs/heads/main'
-      run: git push --follow-tags origin main  
+      run: git push --follow-tags origin main
 
-    # --------------------------------------------------------
-    # PUBLISH TO NPM
-    # --------------------------------------------------------
     - name: Publish to npm
       if: github.ref == 'refs/heads/main'
       run: npm publish
