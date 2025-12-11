@@ -3,13 +3,10 @@
   "version": "1.0.3",
   "main": "index.ts",
   "types": "index.ts",
-  "files": [
-    "index.ts",
-    "src",
-    "LICENSE",
-    "README.md"
-  ],
   "description": "Flexible alert system for React Native apps",
+  "scripts": {
+    "release": "standard-version"
+  },
   "keywords": [
     "react-native",
     "alert",
