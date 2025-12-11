@@ -1,0 +1,62 @@
+name: NPM Publish Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        persist-credentials: true
+
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+        registry-url: https://registry.npmjs.org
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run lint
+      run: npm run lint
+
+    - name: Run tests
+      run: npm test
+
+    - name: Build package
+      run: npm run build
+
+    # --------------------------------------------------------
+    # VERSION BUMP USING STANDARD-VERSION
+    # --------------------------------------------------------
+    - name: Bump Version (Conventional Commits)
+      if: github.ref == 'refs/heads/main'
+      run: |
+        npm install -g standard-version
+        standard-version
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Push version bump commit + tags
+      if: github.ref == 'refs/heads/main'
+      run: |
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        git push --follow-tags origin main
+
+    # --------------------------------------------------------
+    # PUBLISH TO NPM
+    # --------------------------------------------------------
+    - name: Publish to npm
+      if: github.ref == 'refs/heads/main'
+      run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
