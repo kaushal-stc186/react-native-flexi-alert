@@ -272,7 +272,7 @@ PRs, issues, and suggestions are welcome! See the repository for details.
 
 ## 📞 Support
 
-For questions or issues, please open an issue on [GitHub](https://github.com/kaushal-stc186).
+For questions or issues, please open an issue on [GitHub](https://github.com/kaushal-stc186/react-native-flexi-alert).
 
 ---
 
