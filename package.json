@@ -1,6 +1,6 @@
 {
   "name": "react-native-flexi-alert",
-  "version": "1.0.36",
+  "version": "1.0.37",
   "main": "index.ts",
   "types": "index.ts",
   "description": "Flexible alert system for React Native apps",
@@ -19,7 +19,7 @@
     "type": "git",
     "url": "https://github.com/kaushal-stc186/react-native-flexi-alert"
   },
-   "contributors": [
+  "contributors": [
     {
       "name": "Kaushal Rathour",
       "url": "https://github.com/kaushal-stc186"
