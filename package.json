@@ -19,6 +19,16 @@
     "type": "git",
     "url": "https://github.com/kaushal-stc186/react-native-flexi-alert"
   },
+   "contributors": [
+    {
+      "name": "Kaushal Rathour",
+      "url": "https://github.com/kaushal-stc186"
+    },
+    {
+      "name": "Kaushal Rathour",
+      "url": "https://github.com/kaushalrathour"
+    }
+  ],
   "peerDependencies": {
     "react-native": ">=0.70.0"
   },
