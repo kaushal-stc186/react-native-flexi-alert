@@ -14,6 +14,8 @@ React Native Flexi Alert provides a rich alert and prompt modal API with:
 - **Async Flows:** Prevent auto-closing for async operations or loading states.
 - **Customizable:** Override styles, layouts (row/column), and alert themes.
 - **Types:** Full TypeScript support for all public APIs.
+- **Modern Animations:** Uses `react-native-reanimated` for smooth, performant animations.
+- **React Native Modal:** Built on React Native's native Modal component (no external modal dependencies).
 
 ---
 
@@ -26,6 +28,18 @@ npm install react-native-flexi-alert
 # or
 yarn add react-native-flexi-alert
 ```
+
+### Peer Dependencies
+
+This package requires the following peer dependencies:
+
+```bash
+npm install react-native-reanimated react-native-size-matters
+# or
+yarn add react-native-reanimated react-native-size-matters
+```
+
+**Note:** Make sure to follow the [react-native-reanimated setup instructions](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/getting-started/) for your platform.
 
 ---
 
@@ -239,6 +253,35 @@ Alert button objects:
 ## 🧩 File Overview & Architecture
 
 This library exposes two main public entry points: **Alert** and **GlobalAlert**. You only need to import and use these when integrating the library in your app.
+
+### Package Structure
+
+```
+react-native-flexi-alert/
+├── src/
+│   ├── StyledAlert/          # Main alert component
+│   │   ├── StyledAlert.tsx   # Component implementation
+│   │   ├── useStyledAlert.ts # Custom hook for component logic
+│   │   ├── styles.ts         # Component styles
+│   │   ├── constants.ts       # Component constants and themes
+│   │   └── index.ts           # Component export
+│   ├── GlobalAlert.tsx        # Global alert manager
+│   ├── AlertService.ts        # Alert service API
+│   ├── AlertTypes.ts          # Type definitions
+│   ├── types.ts               # TypeScript interfaces
+│   └── constants/             # Shared constants
+│       └── images.ts          # Image assets
+├── index.ts                   # Main package export
+└── package.json
+```
+
+### Architecture Notes
+
+- **Component Structure:** Follows React Native engineering rules with separated concerns (component, hooks, styles, constants).
+- **Hooks:** Custom hooks extracted for reusable logic (`useStyledAlert`).
+- **Animations:** Uses `react-native-reanimated` for UI thread animations (no JS thread dependency).
+- **Modal:** Built on React Native's native `Modal` component for better performance and compatibility.
+- **Layout:** Follows React Native layout rules (gap for spacing, parents own layout, no margin usage).
 
 ---
 
